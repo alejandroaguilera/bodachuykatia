@@ -26,7 +26,7 @@ export const events = [
     map: maps(aura), embed: embed(aura), art: '/art/casa-aura',
   },
   {
-    key: 'recepcion', time: '7:00', ampm: 'P.M.', title: 'Recepción', place: 'Casa Aura',
+    key: 'recepcion', time: '6:30', ampm: 'P.M.', title: 'Recepción', place: 'Casa Aura',
     address: 'P.º del Acueducto, Lomas de Valle Alto, 64989 Monterrey, N.L.',
     map: maps(aura), embed: embed(aura), art: '/art/casa-aura',
   },
