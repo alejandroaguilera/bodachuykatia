@@ -32,7 +32,7 @@ export default async function Admin() {
       <a className="admin-csv" href="/api/rsvp/export">Descargar CSV</a>
       <div className="admin-table">
         <table>
-          <thead><tr><th>Nombre</th><th>Asiste</th><th>Personas</th><th>Teléfono</th><th>Mensaje</th><th>Fecha</th></tr></thead>
+          <thead><tr><th>Nombre</th><th>Asiste</th><th>Personas</th><th>Teléfono</th><th>Mensaje</th><th>Fecha</th><th></th></tr></thead>
           <tbody>
             {rows.map((r) => (
               <tr key={r.id}>
@@ -42,6 +42,12 @@ export default async function Admin() {
                 <td><a href={`tel:${r.phone}`}>{r.phone}</a></td>
                 <td>{r.message}</td>
                 <td>{r.createdAt.toLocaleString('es-MX', { timeZone: 'America/Monterrey', dateStyle: 'short', timeStyle: 'short' })}</td>
+                <td>
+                  <form method="post" action="/api/rsvp/delete">
+                    <input type="hidden" name="id" value={r.id} />
+                    <button className="admin-del" title="Borrar respuesta">Borrar</button>
+                  </form>
+                </td>
               </tr>
             ))}
           </tbody>

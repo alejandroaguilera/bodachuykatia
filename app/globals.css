@@ -394,3 +394,4 @@ a { color: inherit; }
 /* números alineados donde importan */
 .cd-num, .itin-time, .hotel-price, .hotel-code-v, .menv-clabe, .cal-grid, .scratch-under b, .stepper b { font-variant-numeric: lining-nums tabular-nums; }
 .foot-mtn { width: calc(100% + 2 * var(--pad)); margin-left: calc(-1 * var(--pad)); margin-right: calc(-1 * var(--pad)); }
+.admin-del { font-size: 12px; color: #9a4a3a; text-decoration: underline; }
