@@ -1,0 +1,7 @@
+node_modules
+.next
+.env
+.env.dokploy
+Recursos_novios
+next-env.d.ts
+*.tsbuildinfo
