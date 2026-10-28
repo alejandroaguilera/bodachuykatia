@@ -2,8 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { Reveal } from './Reveal';
 
-const CREDIT_URL = 'https://wa.me/528146817781?text=' +
-  encodeURIComponent('Vengo de la pág de la boda, ¿me ayudas con algo de tecnología?');
+const CREDIT_URL = 'https://mrhapps.mx';
 
 export default function Footer({ mountains }: { mountains?: string }) {
   const ref = useRef<HTMLElement>(null);
@@ -25,11 +24,11 @@ export default function Footer({ mountains }: { mountains?: string }) {
 
   return (
     <footer ref={ref} className="foot">
-      <Reveal><p className="foot-mono script">K <span className="amp">&amp;</span> J</p></Reveal>
+      <Reveal><img className="foot-mono" src="/art/monogram.png" alt="Monograma Katia & Jesús" width={426} height={414} /></Reveal>
       <Reveal delay={0.1}><p className="foot-date">30 · 01 · 2027</p></Reveal>
       <Reveal delay={0.2}><p className="eyebrow">Monterrey, Nuevo León</p></Reveal>
       {mountains && <div className="foot-mtn" aria-hidden dangerouslySetInnerHTML={{ __html: mountains }} />}
-      <a className="foot-credit" href={CREDIT_URL} target="_blank" rel="noopener">
+      <a className="foot-credit" href={CREDIT_URL} target="_blank">
         <span>Hecho con cariño por</span>
         <img src="/mrhapps.png" alt="mrhapps" width={118} height={24} />
       </a>

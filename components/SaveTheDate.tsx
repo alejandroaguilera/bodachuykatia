@@ -1,12 +1,8 @@
 'use client';
-import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { AnimatePresence, motion, useInView } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
 import { WEDDING_DATE } from '@/lib/info';
-import Scratch from './Scratch';
 import { Reveal } from './Reveal';
-
-const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-const OFFSET = 4; // el 1 de enero de 2027 es viernes
 
 const gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('Boda Katia & Jesús') +
   '&dates=20270130T213000Z/20270131T080000Z&details=' + encodeURIComponent('https://katiayjesus.com') +
@@ -19,50 +15,31 @@ const ics = 'data:text/calendar;charset=utf-8,' + encodeURIComponent([
   'END:VEVENT', 'END:VCALENDAR'].join('\r\n'));
 
 export default function SaveTheDate() {
-  const [found, setFound] = useState(0);
-  const all = found >= 3;
-  const reveal = () => setFound((n) => n + 1);
+  const row = useRef<HTMLDivElement>(null);
+  const seen = useInView(row, { once: true, amount: 0.6 });
 
   return (
     <section className="std" id="fecha">
       <div className="std-grain" />
       <Reveal><p className="eyebrow light">Reserva la fecha</p></Reveal>
       <Reveal delay={0.1}><h2 className="std-title script">Save the Date</h2></Reveal>
-      <Reveal delay={0.2}><p className="std-sub">Rasca los tres círculos para descubrir el día</p></Reveal>
 
-      <div className="std-row">
-        <Scratch label="día" onReveal={reveal}><b>30</b><span>sábado</span></Scratch>
-        <Scratch label="mes" onReveal={reveal}><b className="sm">Enero</b><span>invierno</span></Scratch>
-        <Scratch label="año" onReveal={reveal}><b className="sm">2027</b><span>Monterrey</span></Scratch>
+      <div className="std-after">
+        {seen && <Petals />}
+        <div className="std-row" ref={row}>
+          {([['30', 'sábado', ''], ['Enero', 'invierno', 'sm'], ['2027', 'Monterrey', 'sm']] as const).map(([v, l, c], i) => (
+            <motion.div key={v} className="std-circle" initial={{ opacity: 0, scale: 0.8 }} animate={seen ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 1.1, delay: 0.15 + i * 0.18, ease: [0.22, 1, 0.36, 1] }}>
+              <b className={c}>{v}</b><span>{l}</span>
+            </motion.div>
+          ))}
+        </div>
+        <Reveal delay={0.3}><p className="std-sub">Guárdala en tu calendario</p></Reveal>
+        <Reveal delay={0.4} className="std-actions">
+          <a className="btn btn-light" href={gcal} target="_blank" rel="noreferrer">Google Calendar</a>
+          <a className="btn btn-ghost-light" href={ics} download="boda-katia-jesus.ics">Apple / Outlook</a>
+        </Reveal>
       </div>
-
-      <AnimatePresence>
-        {all && (
-          <motion.div className="std-after" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}>
-            <Petals />
-            <div className="cal">
-              <p className="cal-head"><span className="script">Enero</span> 2027</p>
-              <div className="cal-grid">
-                {days.map((d, i) => <span key={i} className="cal-dow">{d}</span>)}
-                {Array.from({ length: OFFSET }).map((_, i) => <span key={`e${i}`} />)}
-                {Array.from({ length: 31 }).map((_, i) => (
-                  <span key={i} className={`cal-day ${i === 29 ? 'is' : ''}`}>
-                    {i + 1}
-                    {i === 29 && (
-                      <svg viewBox="0 0 60 60" className="cal-ring"><motion.path d="M30 6c14 0 25 10 24 23-1 14-12 25-26 24C15 52 5 42 6 29 7 16 18 5 33 7" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.6, delay: 0.8 }} /></svg>
-                    )}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="std-actions">
-              <a className="btn btn-light" href={gcal} target="_blank" rel="noreferrer">Google Calendar</a>
-              <a className="btn btn-ghost-light" href={ics} download="boda-katia-jesus.ics">Apple / Outlook</a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      {!all && found > 0 && <p className="std-count">{found} de 3</p>}
 
       <Countdown />
     </section>
