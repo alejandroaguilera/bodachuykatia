@@ -9,4 +9,5 @@ for (const [f, n] of Object.entries(map)) {
     await sharp(`${src}/${f}`).rotate().resize({ width: w, withoutEnlargement: true }).webp({ quality: 74 }).toFile(`${out}/${n}-${w}.webp`);
   }
 }
-await sharp(`${src}/UIwgDXFe.jpg`).resize(1200, 630, { fit: 'cover', position: 'attention' }).jpeg({ quality: 80 }).toFile(`${out}/og.jpg`);
+// OG: IMG_3253, recorte manual con las caras centradas (top 16%)
+await sharp(`${src}/IMG_3253.JPG`).rotate().extract({ left: 0, top: 328, width: 1366, height: 717 }).resize(1200, 630).jpeg({ quality: 80 }).toFile(`${out}/og-pareja.jpg`);

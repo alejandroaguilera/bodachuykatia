@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Katia & Jesús · Nos casamos',
     description: '30 de enero de 2027 · Monterrey, N.L. Confirma tu asistencia.',
-    images: [{ url: '/photos/og.jpg', width: 1200, height: 630 }],
+    images: [{ url: '/photos/og-pareja.jpg', width: 1200, height: 630 }],
     locale: 'es_MX',
     type: 'website',
   },
