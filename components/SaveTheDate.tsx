@@ -9,13 +9,13 @@ const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 const OFFSET = 4; // el 1 de enero de 2027 es viernes
 
 const gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('Boda Katia & Jesús') +
-  '&dates=20270130T213000Z/20270131T080000Z&details=' + encodeURIComponent('https://bodachuykatia.mrhapps.mx') +
+  '&dates=20270130T213000Z/20270131T080000Z&details=' + encodeURIComponent('https://katiayjesus.com') +
   '&location=' + encodeURIComponent('Capilla Santa María del Fuego Nuevo, Monterrey, N.L.');
 
 const ics = 'data:text/calendar;charset=utf-8,' + encodeURIComponent([
   'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//KJ//Boda//ES', 'BEGIN:VEVENT', 'UID:boda-katia-jesus-20270130',
   'DTSTAMP:20261028T000000Z', 'DTSTART:20270130T213000Z', 'DTEND:20270131T080000Z', 'SUMMARY:Boda Katia & Jesús',
-  'LOCATION:Capilla Santa María del Fuego Nuevo\\, Monterrey\\, N.L.', 'DESCRIPTION:https://bodachuykatia.mrhapps.mx',
+  'LOCATION:Capilla Santa María del Fuego Nuevo\\, Monterrey\\, N.L.', 'DESCRIPTION:https://katiayjesus.com',
   'END:VEVENT', 'END:VCALENDAR'].join('\r\n'));
 
 export default function SaveTheDate() {

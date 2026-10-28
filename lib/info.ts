@@ -34,7 +34,7 @@ export const events = [
 
 export const registries = [
   { name: 'Target', note: 'Mesa de regalos', url: 'https://www.target.com/gift-registry/gift/katia-jesus' },
-  { name: 'Amazon México', note: 'Mesa de regalos', url: 'https://www.amazon.com.mx/wedding/share/bodakatiayjesus' },
+  { name: 'Amazon México', note: 'Mesa de regalos', url: 'https://link.amazon/B0eRRyfH6' },
 ];
 
 export const accounts = [

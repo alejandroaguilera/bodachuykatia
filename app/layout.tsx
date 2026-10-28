@@ -7,7 +7,7 @@ const script = Pinyon_Script({ subsets: ['latin'], weight: '400', variable: '--f
 const sans = Jost({ subsets: ['latin'], weight: ['300', '400', '500'], variable: '--f-sans' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bodachuykatia.mrhapps.mx'),
+  metadataBase: new URL('https://katiayjesus.com'),
   title: 'Katia & Jesús · 30.01.2027',
   description: 'Nos casamos. Acompáñanos el 30 de enero de 2027 en Monterrey, N.L.',
   openGraph: {
